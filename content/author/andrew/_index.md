@@ -6,33 +6,42 @@ name = "Andrew Beckerman"
 superuser = true
 
 # Role/position
-role = ""
+role = "Senior Lecturer"
 
 # Organizations/Affiliations
 #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
-organizations = [ { name = "", url = "" } ]
+organizations = [ { name = "University of Sheffield", url = "" } ]
 
 # Short bio (displayed in user profile at end of posts)
-bio = ""
+bio = "Andrew works on the structure, complexity and dynamics of food webs and on phenotypic plasticity.  When he's not thinking about bicycles."
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
 email = ""
 
 # List (academic) interests or hobbies
 interests = [
-  "",
-  "",
-  ""
+  "food webs",
+  "phenotypic plasticity",
+  "parrot conservation",
+  "bicycles"
 ]
 
 # List qualifications (such as academic degrees)
 [[education.courses]]
-  course = " "
-  institution = " "
+  course = "PhD Ecology"
+  institution = "Yale University"
   year = 1999
 
+[[education.courses]]
+  course = "Master of Forest Science"
+  institution = "Yale University"
+  year = 1994
 
-
+[[education.courses]]
+  course = "BSc Biology and Environmental Studies"
+  institution = "Tufts University"
+  year = 1990
+  
 # Social/Academic Networking
 #
 # Icon pack "fab" includes the following social network icons:
@@ -79,5 +88,5 @@ interests = [
 #   link = "files/cv.pdf"
 
 +++
-
+Andrew is an evolutionary ecologists.  He is interested in how the environment affects organism traits and how this determines the distribution and abundance of species and the complexity and structure of their communities.  He's been using R for more than 20 years and specialises in enthusiastically explaining things three or four different ways.  He still likes learning to use new methods and tools.  He also rides bicycles a fair bit.
 
