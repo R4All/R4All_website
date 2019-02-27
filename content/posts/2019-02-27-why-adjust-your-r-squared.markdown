@@ -1,0 +1,69 @@
+---
+title: Why adjust your r-squared
+author: Owen
+date: '2019-02-27'
+slug: why-adjust-your-r-squared
+categories: []
+tags: []
+image:
+  caption: ''
+  focal_point: ''
+---
+
+Just a little demo of what happens if you don’t or do adjust your r-squared. Here’s the bottom line... 
+
+<img src="/posts/2019-02-27-why-adjust-your-r-squared_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+
+
+As we increase the number of explanatory variables in a linear model (e.g. multiple regression) the unadjusted r-squared increaes (green dots) even if the additional explanatory variables contain only random numbers. The adjusted r-squared is "adjusted" so it does not! So if we simply want to know the proportion of variance explained by our model we are fine using the unadjusted r-squared. If, however, we want to compare the r-squared of models with different numbers of explanatory variables, we should compare the adjusted r-squared.
+
+
+
+
+Here's the code for making the figure. (Done before we converted to the tidyverse!)
+
+
+```r
+## Lets do some multiple regression, with different numbers of explanatory variables
+## with completely random data
+numb.expl.vars <- floor(rep(2^seq(0, 5, 0.5), each=50))
+
+## Number of observations
+n <- 100
+
+## The response variable
+y <- rnorm(n)
+
+## Function to return the unadjusted and adjusted r-squared
+get.r2 <- function(ne) {
+  x <- as.data.frame(matrix(rnorm(n*ne), n, ne))
+  m1 <- lm(y ~ ., x)
+  result <- c(summary(m1)$r.squared, summary(m1)$adj.r.squared)
+  result
+}
+
+## use lapply to run the function over the number of explanatory variables vec
+rez <- do.call(rbind, lapply(numb.expl.vars, function(x) get.r2(x)))
+
+## get the mean r-squared and adjusted r-squared per number of expl varbs
+means <- aggregate(rez, list(numb.expl.vars=numb.expl.vars), mean)
+
+## plot the data
+matplot(log2(numb.expl.vars), rez, type="n", ann=F, axes=F)
+box()
+abline(h=0)
+matpoints(jitter(log2(numb.expl.vars)), rez, pch=19, col=c("#11ff1144", "#ff111144"))
+mtext(1, line=2.5, text="Number of explanatory variables")
+mtext(2, line=2, text="R-squared\n(green unadjusted, red adjusted)")
+axis(1, at=0:5, labels=2^(0:5))
+axis(2)
+matpoints(log2(means[,1]), means[,2], pch=21, bg=c("#11ff1144"))
+matpoints(log2(means[,1]), means[,3], pch=21, bg=c("#ff111144"))
+
+## for fun, calculate the adjusted r-squared manually
+adj.rsquared <- 1 - (1-rez[,1])*(n-1)/(n-numb.expl.vars-1)
+sum(abs(adj.rsquared-rez[,2])>1e-10) ## should be zero
+```
+
+
+

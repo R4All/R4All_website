@@ -12,6 +12,25 @@
     
     
     <item>
+      <title>Maximum likelihood part 1</title>
+      <link>/posts/maximum-likelihood-part-1/</link>
+      <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/maximum-likelihood-part-1/</guid>
+      <description>This is the first in a series of posts about maximum likelihood methods for fitting statistical models to data. Inspiration for the material comes in large part from Drew Purves who presented something similar. Owen is using Drew’s approach as the basis for this course. Much of the R specific stuff is heavily influenced by Ben Bolker’s excellent book: Ecological Models and Data in R. The goal of this and the following posts includes: learning how to fit to our data more mechanistic models of arbitrary complexity.</description>
+    </item>
+    
+    <item>
+      <title>Why adjust your r-squared</title>
+      <link>/posts/why-adjust-your-r-squared/</link>
+      <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/why-adjust-your-r-squared/</guid>
+      <description>Just a little demo of what happens if you don’t or do adjust your r-squared. Here’s the bottom line&amp;hellip;
+As we increase the number of explanatory variables in a linear model (e.g. multiple regression) the unadjusted r-squared increaes (green dots) even if the additional explanatory variables contain only random numbers. The adjusted r-squared is &amp;ldquo;adjusted&amp;rdquo; so it does not! So if we simply want to know the proportion of variance explained by our model we are fine using the unadjusted r-squared.</description>
+    </item>
+    
+    <item>
       <title>Getting lost packages</title>
       <link>/posts/getting-lost-packages/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
