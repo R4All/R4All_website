@@ -28,11 +28,10 @@
   
     
   
-  <meta name="description" content="Just a little demo of what happens if you don’t or do adjust your r-squared. Here’s the bottom line&hellip;
-As we increase the number of explanatory variables in a linear model (e.g. multiple regression) the unadjusted r-squared increaes (green dots) even if the additional explanatory variables contain only random numbers. The adjusted r-squared is &ldquo;adjusted&rdquo; so it does not! So if we simply want to know the proportion of variance explained by our model we are fine using the unadjusted r-squared.">
+  <meta name="description" content="This is the first in a series of posts about maximum likelihood methods for fitting statistical models to data. Inspiration for the material comes in large part from Drew Purves who presented something similar. Owen is using Drew’s approach as the basis for this course. Much of the R specific stuff is heavily influenced by Ben Bolker’s excellent book: Ecological Models and Data in R. The goal of this and the following posts includes: learning how to fit to our data more mechanistic models of arbitrary complexity.">
 
   
-  <link rel="alternate" hreflang="en-us" href="/posts/why-adjust-your-r-squared/">
+  <link rel="alternate" hreflang="en-us" href="/posts/maximum-likelihood-part-1/">
 
   
 
@@ -106,7 +105,7 @@ As we increase the number of explanatory variables in a linear model (e.g. multi
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/posts/why-adjust-your-r-squared/">
+  <link rel="canonical" href="/posts/maximum-likelihood-part-1/">
 
   
   
@@ -121,10 +120,9 @@ As we increase the number of explanatory variables in a linear model (e.g. multi
   <meta property="twitter:creator" content="@GSwithR">
   
   <meta property="og:site_name" content="R4All">
-  <meta property="og:url" content="/posts/why-adjust-your-r-squared/">
-  <meta property="og:title" content="Why adjust your r-squared | R4All">
-  <meta property="og:description" content="Just a little demo of what happens if you don’t or do adjust your r-squared. Here’s the bottom line&hellip;
-As we increase the number of explanatory variables in a linear model (e.g. multiple regression) the unadjusted r-squared increaes (green dots) even if the additional explanatory variables contain only random numbers. The adjusted r-squared is &ldquo;adjusted&rdquo; so it does not! So if we simply want to know the proportion of variance explained by our model we are fine using the unadjusted r-squared."><meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:url" content="/posts/maximum-likelihood-part-1/">
+  <meta property="og:title" content="Maximum likelihood part 1 | R4All">
+  <meta property="og:description" content="This is the first in a series of posts about maximum likelihood methods for fitting statistical models to data. Inspiration for the material comes in large part from Drew Purves who presented something similar. Owen is using Drew’s approach as the basis for this course. Much of the R specific stuff is heavily influenced by Ben Bolker’s excellent book: Ecological Models and Data in R. The goal of this and the following posts includes: learning how to fit to our data more mechanistic models of arbitrary complexity."><meta property="og:image" content="/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2019-02-27T00:00:00&#43;00:00">
@@ -136,7 +134,7 @@ As we increase the number of explanatory variables in a linear model (e.g. multi
 
   
 
-  <title>Why adjust your r-squared | R4All</title>
+  <title>Maximum likelihood part 1 | R4All</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -393,7 +391,7 @@ As we increase the number of explanatory variables in a linear model (e.g. multi
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">Why adjust your r-squared</h1>
+  <h1 itemprop="name">Maximum likelihood part 1</h1>
 
   
 
@@ -432,35 +430,35 @@ As we increase the number of explanatory variables in a linear model (e.g. multi
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Why%20adjust%20your%20r-squared&amp;url=%2fposts%2fwhy-adjust-your-r-squared%2f"
+         href="https://twitter.com/intent/tweet?text=Maximum%20likelihood%20part%201&amp;url=%2fposts%2fmaximum-likelihood-part-1%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fposts%2fwhy-adjust-your-r-squared%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fposts%2fmaximum-likelihood-part-1%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-facebook-f"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fposts%2fwhy-adjust-your-r-squared%2f&amp;title=Why%20adjust%20your%20r-squared"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fposts%2fmaximum-likelihood-part-1%2f&amp;title=Maximum%20likelihood%20part%201"
          target="_blank" rel="noopener">
         <i class="fab fa-linkedin-in"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fposts%2fwhy-adjust-your-r-squared%2f&amp;title=Why%20adjust%20your%20r-squared"
+         href="http://service.weibo.com/share/share.php?url=%2fposts%2fmaximum-likelihood-part-1%2f&amp;title=Maximum%20likelihood%20part%201"
          target="_blank" rel="noopener">
         <i class="fab fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Why%20adjust%20your%20r-squared&amp;body=%2fposts%2fwhy-adjust-your-r-squared%2f">
+         href="mailto:?subject=Maximum%20likelihood%20part%201&amp;body=%2fposts%2fmaximum-likelihood-part-1%2f">
         <i class="fas fa-envelope"></i>
       </a>
     </li>
@@ -496,54 +494,134 @@ As we increase the number of explanatory variables in a linear model (e.g. multi
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p>Just a little demo of what happens if you don’t or do adjust your r-squared. Here’s the bottom line&hellip;</p>
+      <p>This is the first in a series of posts about maximum likelihood methods for fitting statistical models to data. Inspiration for the material comes in large part from Drew Purves who presented something similar. Owen is using Drew’s approach as the basis for this course. Much of the R specific stuff is heavily influenced by Ben Bolker’s excellent book: Ecological Models and Data in R. The goal of this and the following posts includes:
+learning how to fit to our data more mechanistic models of arbitrary complexity.
+learning how to do this with ease, confidence, and complete transparency.
+at some point delving into robust and efficient parameter estimation methods (e.g., MCMC).
+at some point working out how to switch between frequentist and Bayesian approaches with ease.
+(Please note that the focus of this post is learning about maximum likelihood methods. R is a only a tool to help that learning, so we avoid putting lots of potentially distracting R code in the post, and rather make it available as a separate file.)
+Lets start on familiar ground by consider a common statistical approach, linear regression. This involves fitting a model (equation) to the observed data. The equation is:</p>
 
-<p><img src="/posts/2019-02-27-why-adjust-your-r-squared_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>$$ y = a + bx + norm(0, \sigma) $$</p>
 
-<p>As we increase the number of explanatory variables in a linear model (e.g. multiple regression) the unadjusted r-squared increaes (green dots) even if the additional explanatory variables contain only random numbers. The adjusted r-squared is &ldquo;adjusted&rdquo; so it does not! So if we simply want to know the proportion of variance explained by our model we are fine using the unadjusted r-squared. If, however, we want to compare the r-squared of models with different numbers of explanatory variables, we should compare the adjusted r-squared.</p>
+<ul>
+<li>$ y $ is the observed response variable</li>
+<li>$ x $ is the explanatory variable</li>
+<li>$ a $ is the intercept</li>
+<li>$ b $ is the slope</li>
+<li>$ norm(0, \sigma) $ is the error term.</li>
+</ul>
 
-<p>Here&rsquo;s the code for making the figure. (Done before we converted to the tidyverse!)</p>
+<p>This is the model we fit to our data. We are trying to find the value of $ a $, $ b $, and $ \sigma $ that fit the data. These are the parameters of the model. How do we find out the values of a and b that give the best regression line? Regression does so by minimizing the sum of squares, which is why we often use the term ‘least squares regression’. We are going to learn how to estimate the parameters of a model by maximising likelihood (instead of minimising least squares). We will start by considering a dataset and model even simpler than linear regression. This example may seem rather trivial. It is. However, better to start simple, with an example adequate to introduce many of the fundamental concepts we need.</p>
 
-<pre><code class="language-r">## Lets do some multiple regression, with different numbers of explanatory variables
-## with completely random data
-numb.expl.vars &lt;- floor(rep(2^seq(0, 5, 0.5), each=50))
+<p>Assume we’ve counted the number of individuals in seven replicate quadrats that we’ve placed randomly in a field (don’t ask me why seven quadrats – maybe we left the other three in the lab – who knows). This is our observed data (seven numbers).</p>
 
-## Number of observations
-n &lt;- 100
+<p>Now, the definition of likelihood is $ p(data | model) $</p>
 
-## The response variable
-y &lt;- rnorm(n)
+<ul>
+<li>$ p $ stands for probability</li>
+<li>* data * is the observed data</li>
+<li>$ | $ (the vertical bar) can be read as ‘given the’</li>
+<li>$ model $ = whatever model we like.</li>
+</ul>
 
-## Function to return the unadjusted and adjusted r-squared
-get.r2 &lt;- function(ne) {
-  x &lt;- as.data.frame(matrix(rnorm(n*ne), n, ne))
-  m1 &lt;- lm(y ~ ., x)
-  result &lt;- c(summary(m1)$r.squared, summary(m1)$adj.r.squared)
-  result
-}
+<p>That is, $ p(data | model) $ can be read as “the probability of the data given the model”.</p>
 
-## use lapply to run the function over the number of explanatory variables vec
-rez &lt;- do.call(rbind, lapply(numb.expl.vars, function(x) get.r2(x)))
+<p>In our current example we will assume that individuals in the field are randomly distributed, and therefore that the count in each quadrat comes from a Poission distribution. The Poisson distribution has only one pa- rameter, the mean. This is what we want to estimate. Since this is a trivial example, we can easily find the most likely value of the mean by taking the arithmetic average (mean) of the observed values. We’re not go- ing to do this yet, since the purpose of using this example is illustration of concepts.</p>
 
-## get the mean r-squared and adjusted r-squared per number of expl varbs
-means &lt;- aggregate(rez, list(numb.expl.vars=numb.expl.vars), mean)
+<p>So, our model is $ Y_i = Poisson(M) $, where $ Y_i $ is the ith (pronounced eye–eth) observation of the response variable (here the number of individuals counted in the first quadrat) and $ M $ is the mean of the Poisson distribution – this is what we want to estimate.</p>
 
-## plot the data
-matplot(log2(numb.expl.vars), rez, type=&quot;n&quot;, ann=F, axes=F)
-box()
-abline(h=0)
-matpoints(jitter(log2(numb.expl.vars)), rez, pch=19, col=c(&quot;#11ff1144&quot;, &quot;#ff111144&quot;))
-mtext(1, line=2.5, text=&quot;Number of explanatory variables&quot;)
-mtext(2, line=2, text=&quot;R-squared\n(green unadjusted, red adjusted)&quot;)
-axis(1, at=0:5, labels=2^(0:5))
-axis(2)
-matpoints(log2(means[,1]), means[,2], pch=21, bg=c(&quot;#11ff1144&quot;))
-matpoints(log2(means[,1]), means[,3], pch=21, bg=c(&quot;#ff111144&quot;))
+<p>We want to find the likelihood – $ p(data | model) $ – and so first we calculate the likelihood of each individual observation. The likelihood of the ith observation is,</p>
 
-## for fun, calculate the adjusted r-squared manually
-adj.rsquared &lt;- 1 - (1-rez[,1])*(n-1)/(n-numb.expl.vars-1)
-sum(abs(adj.rsquared-rez[,2])&gt;1e-10) ## should be zero
-</code></pre>
+<p>$$ p(Y_i | M) $$</p>
+
+<p>This is the probability of getting the value $ Y_i $ given the mean $ M $.
+So if the first count $ Y_1 = 6 $ and we guess a mean of 7, we can find the probability of $ Y_1 = 6 $ in Excel with: <code>Poisson(6, 7, FALSE)</code> (why false?). Or in R using <code>dpois(6, 7)</code></p>
+
+<p>If you do either of these you will find that the probability of observing a 6 given a Poisson distribution with mean 7 is about 0.15.</p>
+
+<p>We do this for each value of the response variable, log the probabilities, and then add them up.
+Lets do this in Excel, using the worksheet ‘eg1’ in <a href="/files/eg1.xlsx" target="_blank">this Excel spreadsheet</a>. Here is a screen grab of the worksheet:</p>
+
+
+
+
+  
+
+<figure>
+
+<img src="/img/excelgrab1.jpg" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  <h4></h4>
+  
+</figcaption>
+
+</figure>
+
+<p>The first column (from row 4 down) is the data, the second is the probability of each data point given the mean (look at the formula to see the call to the Excel Possion function). The third column is the log (base e; ln) of the probabilities (i.e., the log-likelihood. Often this is just called the likelihood, but we should try to always use the term log-likelihood, for accuracy. At the bottom of column C is the sum of the log-likelihoods. Cell A2 contains our guess of the mean of the observed data.</p>
+
+<ul>
+<li>Look at the formulas in the cells to check they are what you expect.</li>
+<li>Try changing the guess of the mean and see what happens to the sum of the log probabilities.</li>
+</ul>
+
+<p>By changing the guess of the mean (cell A2 in the worksheet ‘eg1’) you change the log-likelihood. The challenge is to find the value of the mean that will minimise the log-likelihood (= maximise the likelihood). This value (estimate) of the mean is called the maximum likelihood estimate. We are interested in maximising the likelihood, or equivalently, minimising it (make as close to zero as possible). The more negative the sum of log likelihood the worse the model (guess of the mean) is. (Read this paragraph while playing with the Excel worksheet, until you are sure you get it. It is very important.)</p>
+
+<p>(By the way, we log the probabilities for a few reasons, including that computers often have problems deal- ing with very small numbers.)</p>
+
+<p>By playing with the guess of the mean in cell A2 of the Excel worksheet, you may have found that a value close to 6 minimises the log-likelihood (makes it closest to zero, i.e., least negative). You have just obtained a maximum likelihood estimate of the parameter of this model.</p>
+
+<p>Now take a look at the R script file <a href="/files/eg1.r" target="_blank">eg1.r</a>. This shows how you can do with R what you just did with Excel.</p>
+
+<p>Of course, we don’t want to have to guess the mean, look at the log-likelihood, guess again, and look at the log-likelihood again, and so on. We want the computer to do the work. In the R file is some script that makes a vector of guesses of the mean, loops through these, and records the log-likelihood. Then we can plot the value of the log-likelihood versus the guess of the mean.</p>
+
+
+
+
+  
+
+<figure>
+
+<img src="/img/like_profile.jpg" />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  <h4></h4>
+  
+</figcaption>
+
+</figure>
+
+<p>The maximum of this curve is the maximum likelihood. It is achieved when the guess of the mean has the val- ue of 6.1, where the vertical dashed line is drawn. The log-likelihood here is -14.821. This curve is also know as the likelihood profile.</p>
+
+<p>How did we do? Our guess was 6.1 and the actual mean is 6.143, with a log-likelihood of -14.820. Not bad then!
+Question for you: What should we change in the R script to get a more accurate estimate of the mean?
+Now, this is important. If we suspected our observed data were poisson distributed, and we wanted to mod- el that data in R, we might easily decide to use the generalised linear model funtion <code>glm</code> and specify a pois- son distribution (family=poisson). The code to do this would look something like, <code>glm(n ~ 1, family=poisson)</code> where n is the response variable that here is the number of individuals in each of the quadrats.</p>
+
+<p>This model is in the R script previously mentioned, and the coefficient (estimated parameter / mean) is 1.8153. Not the mean that we found (6.1). This is because specifying a poisson distribution (family=poisson) means that a log link function is used. So we have to un-log the coefficient to get the actual value&hellip; exp(1.8153) = 6.1428. Good.</p>
+
+<p>What else can we do with this simple example? Let’s figure out for ourselves the AIC (Akaike Information Cri- teria) of our model. The definition of AIC is,</p>
+
+<p>$$ AIC = -2*L + 2*n $$</p>
+
+<p>Where L is the log-likelihood and p is the number of parameters (only one, the mean, in our model). Our log-likelihood was -14.82117, so AIC = 31.64. The AIC given by the <code>glm</code> function is 31.64 also. Great.</p>
+
+<p>How does <code>glm</code> work? How does it find the mean? It tries many guesses of the mean and sees which gives the maximum likelihood, just like we did in the R script that made the graph above. However, <code>glm</code> uses a search method that is a bit smarter than ours (I think it calls the function <code>optim</code> which by default uses the Nelder-Mead search algorith, but this is not too important now). What is important is to realise that <code>glm</code> is just searching around the parameter space looking for a maximum likelihood. It tries to go uphill on the likelihood profile. When it can’t go uphill any more, it knows it’s reached the maximum likelihood.
+You should now be able to have a good go at answering these questions:</p>
+
+<ul>
+<li>What are parameters?</li>
+<li>What is a variable?</li>
+<li>What is likelihood?</li>
+<li>What does this mean p(data| model)?</li>
+<li>How can we maximise likelihood.</li>
+<li>What is the maximum likelihood estimate of a parameter?</li>
+<li>What is a likelihood profile?</li>
+</ul>
 
     </div>
 

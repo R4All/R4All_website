@@ -46,6 +46,200 @@
     </item>
     
     <item>
+      <title>Maximum likelihood part 1</title>
+      <link>/posts/maximum-likelihood-part-1/</link>
+      <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/maximum-likelihood-part-1/</guid>
+      <description>&lt;p&gt;This is the first in a series of posts about maximum likelihood methods for fitting statistical models to data. Inspiration for the material comes in large part from Drew Purves who presented something similar. Owen is using Drew’s approach as the basis for this course. Much of the R specific stuff is heavily influenced by Ben Bolker’s excellent book: Ecological Models and Data in R. The goal of this and the following posts includes:
+learning how to fit to our data more mechanistic models of arbitrary complexity.
+learning how to do this with ease, confidence, and complete transparency.
+at some point delving into robust and efficient parameter estimation methods (e.g., MCMC).
+at some point working out how to switch between frequentist and Bayesian approaches with ease.
+(Please note that the focus of this post is learning about maximum likelihood methods. R is a only a tool to help that learning, so we avoid putting lots of potentially distracting R code in the post, and rather make it available as a separate file.)
+Lets start on familiar ground by consider a common statistical approach, linear regression. This involves fitting a model (equation) to the observed data. The equation is:&lt;/p&gt;
+
+&lt;p&gt;$$ y = a + bx + norm(0, \sigma) $$&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;$ y $ is the observed response variable&lt;/li&gt;
+&lt;li&gt;$ x $ is the explanatory variable&lt;/li&gt;
+&lt;li&gt;$ a $ is the intercept&lt;/li&gt;
+&lt;li&gt;$ b $ is the slope&lt;/li&gt;
+&lt;li&gt;$ norm(0, \sigma) $ is the error term.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is the model we fit to our data. We are trying to find the value of $ a $, $ b $, and $ \sigma $ that fit the data. These are the parameters of the model. How do we find out the values of a and b that give the best regression line? Regression does so by minimizing the sum of squares, which is why we often use the term ‘least squares regression’. We are going to learn how to estimate the parameters of a model by maximising likelihood (instead of minimising least squares). We will start by considering a dataset and model even simpler than linear regression. This example may seem rather trivial. It is. However, better to start simple, with an example adequate to introduce many of the fundamental concepts we need.&lt;/p&gt;
+
+&lt;p&gt;Assume we’ve counted the number of individuals in seven replicate quadrats that we’ve placed randomly in a field (don’t ask me why seven quadrats – maybe we left the other three in the lab – who knows). This is our observed data (seven numbers).&lt;/p&gt;
+
+&lt;p&gt;Now, the definition of likelihood is $ p(data | model) $&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;$ p $ stands for probability&lt;/li&gt;
+&lt;li&gt;* data * is the observed data&lt;/li&gt;
+&lt;li&gt;$ | $ (the vertical bar) can be read as ‘given the’&lt;/li&gt;
+&lt;li&gt;$ model $ = whatever model we like.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;That is, $ p(data | model) $ can be read as “the probability of the data given the model”.&lt;/p&gt;
+
+&lt;p&gt;In our current example we will assume that individuals in the field are randomly distributed, and therefore that the count in each quadrat comes from a Poission distribution. The Poisson distribution has only one pa- rameter, the mean. This is what we want to estimate. Since this is a trivial example, we can easily find the most likely value of the mean by taking the arithmetic average (mean) of the observed values. We’re not go- ing to do this yet, since the purpose of using this example is illustration of concepts.&lt;/p&gt;
+
+&lt;p&gt;So, our model is $ Y_i = Poisson(M) $, where $ Y_i $ is the ith (pronounced eye–eth) observation of the response variable (here the number of individuals counted in the first quadrat) and $ M $ is the mean of the Poisson distribution – this is what we want to estimate.&lt;/p&gt;
+
+&lt;p&gt;We want to find the likelihood – $ p(data | model) $ – and so first we calculate the likelihood of each individual observation. The likelihood of the ith observation is,&lt;/p&gt;
+
+&lt;p&gt;$$ p(Y_i | M) $$&lt;/p&gt;
+
+&lt;p&gt;This is the probability of getting the value $ Y_i $ given the mean $ M $.
+So if the first count $ Y_1 = 6 $ and we guess a mean of 7, we can find the probability of $ Y_1 = 6 $ in Excel with: &lt;code&gt;Poisson(6, 7, FALSE)&lt;/code&gt; (why false?). Or in R using &lt;code&gt;dpois(6, 7)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you do either of these you will find that the probability of observing a 6 given a Poisson distribution with mean 7 is about 0.15.&lt;/p&gt;
+
+&lt;p&gt;We do this for each value of the response variable, log the probabilities, and then add them up.
+Lets do this in Excel, using the worksheet ‘eg1’ in &lt;a href=&#34;/files/eg1.xlsx&#34; target=&#34;_blank&#34;&gt;this Excel spreadsheet&lt;/a&gt;. Here is a screen grab of the worksheet:&lt;/p&gt;
+
+
+
+
+  
+
+&lt;figure&gt;
+
+&lt;img src=&#34;/img/excelgrab1.jpg&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; &gt;
+  &lt;h4&gt;&lt;/h4&gt;
+  
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;p&gt;The first column (from row 4 down) is the data, the second is the probability of each data point given the mean (look at the formula to see the call to the Excel Possion function). The third column is the log (base e; ln) of the probabilities (i.e., the log-likelihood. Often this is just called the likelihood, but we should try to always use the term log-likelihood, for accuracy. At the bottom of column C is the sum of the log-likelihoods. Cell A2 contains our guess of the mean of the observed data.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Look at the formulas in the cells to check they are what you expect.&lt;/li&gt;
+&lt;li&gt;Try changing the guess of the mean and see what happens to the sum of the log probabilities.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;By changing the guess of the mean (cell A2 in the worksheet ‘eg1’) you change the log-likelihood. The challenge is to find the value of the mean that will minimise the log-likelihood (= maximise the likelihood). This value (estimate) of the mean is called the maximum likelihood estimate. We are interested in maximising the likelihood, or equivalently, minimising it (make as close to zero as possible). The more negative the sum of log likelihood the worse the model (guess of the mean) is. (Read this paragraph while playing with the Excel worksheet, until you are sure you get it. It is very important.)&lt;/p&gt;
+
+&lt;p&gt;(By the way, we log the probabilities for a few reasons, including that computers often have problems deal- ing with very small numbers.)&lt;/p&gt;
+
+&lt;p&gt;By playing with the guess of the mean in cell A2 of the Excel worksheet, you may have found that a value close to 6 minimises the log-likelihood (makes it closest to zero, i.e., least negative). You have just obtained a maximum likelihood estimate of the parameter of this model.&lt;/p&gt;
+
+&lt;p&gt;Now take a look at the R script file &lt;a href=&#34;/files/eg1.r&#34; target=&#34;_blank&#34;&gt;eg1.r&lt;/a&gt;. This shows how you can do with R what you just did with Excel.&lt;/p&gt;
+
+&lt;p&gt;Of course, we don’t want to have to guess the mean, look at the log-likelihood, guess again, and look at the log-likelihood again, and so on. We want the computer to do the work. In the R file is some script that makes a vector of guesses of the mean, loops through these, and records the log-likelihood. Then we can plot the value of the log-likelihood versus the guess of the mean.&lt;/p&gt;
+
+
+
+
+  
+
+&lt;figure&gt;
+
+&lt;img src=&#34;/img/like_profile.jpg&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; &gt;
+  &lt;h4&gt;&lt;/h4&gt;
+  
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;p&gt;The maximum of this curve is the maximum likelihood. It is achieved when the guess of the mean has the val- ue of 6.1, where the vertical dashed line is drawn. The log-likelihood here is -14.821. This curve is also know as the likelihood profile.&lt;/p&gt;
+
+&lt;p&gt;How did we do? Our guess was 6.1 and the actual mean is 6.143, with a log-likelihood of -14.820. Not bad then!
+Question for you: What should we change in the R script to get a more accurate estimate of the mean?
+Now, this is important. If we suspected our observed data were poisson distributed, and we wanted to mod- el that data in R, we might easily decide to use the generalised linear model funtion &lt;code&gt;glm&lt;/code&gt; and specify a pois- son distribution (family=poisson). The code to do this would look something like, &lt;code&gt;glm(n ~ 1, family=poisson)&lt;/code&gt; where n is the response variable that here is the number of individuals in each of the quadrats.&lt;/p&gt;
+
+&lt;p&gt;This model is in the R script previously mentioned, and the coefficient (estimated parameter / mean) is 1.8153. Not the mean that we found (6.1). This is because specifying a poisson distribution (family=poisson) means that a log link function is used. So we have to un-log the coefficient to get the actual value&amp;hellip; exp(1.8153) = 6.1428. Good.&lt;/p&gt;
+
+&lt;p&gt;What else can we do with this simple example? Let’s figure out for ourselves the AIC (Akaike Information Cri- teria) of our model. The definition of AIC is,&lt;/p&gt;
+
+&lt;p&gt;$$ AIC = -2*L + 2*n $$&lt;/p&gt;
+
+&lt;p&gt;Where L is the log-likelihood and p is the number of parameters (only one, the mean, in our model). Our log-likelihood was -14.82117, so AIC = 31.64. The AIC given by the &lt;code&gt;glm&lt;/code&gt; function is 31.64 also. Great.&lt;/p&gt;
+
+&lt;p&gt;How does &lt;code&gt;glm&lt;/code&gt; work? How does it find the mean? It tries many guesses of the mean and sees which gives the maximum likelihood, just like we did in the R script that made the graph above. However, &lt;code&gt;glm&lt;/code&gt; uses a search method that is a bit smarter than ours (I think it calls the function &lt;code&gt;optim&lt;/code&gt; which by default uses the Nelder-Mead search algorith, but this is not too important now). What is important is to realise that &lt;code&gt;glm&lt;/code&gt; is just searching around the parameter space looking for a maximum likelihood. It tries to go uphill on the likelihood profile. When it can’t go uphill any more, it knows it’s reached the maximum likelihood.
+You should now be able to have a good go at answering these questions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;What are parameters?&lt;/li&gt;
+&lt;li&gt;What is a variable?&lt;/li&gt;
+&lt;li&gt;What is likelihood?&lt;/li&gt;
+&lt;li&gt;What does this mean p(data| model)?&lt;/li&gt;
+&lt;li&gt;How can we maximise likelihood.&lt;/li&gt;
+&lt;li&gt;What is the maximum likelihood estimate of a parameter?&lt;/li&gt;
+&lt;li&gt;What is a likelihood profile?&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Why adjust your r-squared</title>
+      <link>/posts/why-adjust-your-r-squared/</link>
+      <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/why-adjust-your-r-squared/</guid>
+      <description>&lt;p&gt;Just a little demo of what happens if you don’t or do adjust your r-squared. Here’s the bottom line&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/posts/2019-02-27-why-adjust-your-r-squared_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As we increase the number of explanatory variables in a linear model (e.g. multiple regression) the unadjusted r-squared increaes (green dots) even if the additional explanatory variables contain only random numbers. The adjusted r-squared is &amp;ldquo;adjusted&amp;rdquo; so it does not! So if we simply want to know the proportion of variance explained by our model we are fine using the unadjusted r-squared. If, however, we want to compare the r-squared of models with different numbers of explanatory variables, we should compare the adjusted r-squared.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the code for making the figure. (Done before we converted to the tidyverse!)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;## Lets do some multiple regression, with different numbers of explanatory variables
+## with completely random data
+numb.expl.vars &amp;lt;- floor(rep(2^seq(0, 5, 0.5), each=50))
+
+## Number of observations
+n &amp;lt;- 100
+
+## The response variable
+y &amp;lt;- rnorm(n)
+
+## Function to return the unadjusted and adjusted r-squared
+get.r2 &amp;lt;- function(ne) {
+  x &amp;lt;- as.data.frame(matrix(rnorm(n*ne), n, ne))
+  m1 &amp;lt;- lm(y ~ ., x)
+  result &amp;lt;- c(summary(m1)$r.squared, summary(m1)$adj.r.squared)
+  result
+}
+
+## use lapply to run the function over the number of explanatory variables vec
+rez &amp;lt;- do.call(rbind, lapply(numb.expl.vars, function(x) get.r2(x)))
+
+## get the mean r-squared and adjusted r-squared per number of expl varbs
+means &amp;lt;- aggregate(rez, list(numb.expl.vars=numb.expl.vars), mean)
+
+## plot the data
+matplot(log2(numb.expl.vars), rez, type=&amp;quot;n&amp;quot;, ann=F, axes=F)
+box()
+abline(h=0)
+matpoints(jitter(log2(numb.expl.vars)), rez, pch=19, col=c(&amp;quot;#11ff1144&amp;quot;, &amp;quot;#ff111144&amp;quot;))
+mtext(1, line=2.5, text=&amp;quot;Number of explanatory variables&amp;quot;)
+mtext(2, line=2, text=&amp;quot;R-squared\n(green unadjusted, red adjusted)&amp;quot;)
+axis(1, at=0:5, labels=2^(0:5))
+axis(2)
+matpoints(log2(means[,1]), means[,2], pch=21, bg=c(&amp;quot;#11ff1144&amp;quot;))
+matpoints(log2(means[,1]), means[,3], pch=21, bg=c(&amp;quot;#ff111144&amp;quot;))
+
+## for fun, calculate the adjusted r-squared manually
+adj.rsquared &amp;lt;- 1 - (1-rez[,1])*(n-1)/(n-numb.expl.vars-1)
+sum(abs(adj.rsquared-rez[,2])&amp;gt;1e-10) ## should be zero
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Getting lost packages</title>
       <link>/posts/getting-lost-packages/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
