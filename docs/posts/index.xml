@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Workflow/Checklist for data analysis</title>
+      <link>/posts/workflow-checklist-for-data-analysis/</link>
+      <pubDate>Thu, 14 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/workflow-checklist-for-data-analysis/</guid>
+      <description>Before touching R/RStudio  Question Hypothesis(es) Study methods, materials, design. Response variable(s) Explanatory variable(s) Prediction(s) Secure resources Perform study, including data collection.  If you don&amp;rsquo;t know, e.g. because you did not conduct the study, before import into R inspect the datafiles in a spreadsheet program (so long as they&amp;rsquo;re not too big) and note the following:
+ if multiple datafiles are used, which contains what what variable names are used in the datafiles, and what these mean (i.</description>
+    </item>
+    
+    <item>
       <title>Maximum likelihood part 1</title>
       <link>/posts/maximum-likelihood-part-1/</link>
       <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>

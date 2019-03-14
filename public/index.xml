@@ -46,6 +46,64 @@
     </item>
     
     <item>
+      <title>Workflow/Checklist for data analysis</title>
+      <link>/posts/workflow-checklist-for-data-analysis/</link>
+      <pubDate>Thu, 14 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/workflow-checklist-for-data-analysis/</guid>
+      <description>
+
+&lt;h1 id=&#34;before-touching-r-rstudio&#34;&gt;Before touching R/RStudio&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Question&lt;/li&gt;
+&lt;li&gt;Hypothesis(es)&lt;/li&gt;
+&lt;li&gt;Study methods, materials, design.&lt;/li&gt;
+&lt;li&gt;Response variable(s)&lt;/li&gt;
+&lt;li&gt;Explanatory variable(s)&lt;/li&gt;
+&lt;li&gt;Prediction(s)&lt;/li&gt;
+&lt;li&gt;Secure resources&lt;/li&gt;
+&lt;li&gt;Perform study, including data collection.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you don&amp;rsquo;t know, e.g. because you did not conduct the study, &lt;em&gt;before&lt;/em&gt; import into R inspect the datafiles in a spreadsheet program (so long as they&amp;rsquo;re not too big) and note the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;if multiple datafiles are used, which contains what&lt;/li&gt;
+&lt;li&gt;what variable names are used in the datafiles, and what these mean (i.e. which are response variables, which are explanatory, and what are others)&lt;/li&gt;
+&lt;li&gt;number of rows and columns in the datafiles&lt;/li&gt;
+&lt;li&gt;arrangement of the data in the datafile, e.g. tidy or not tidy&lt;/li&gt;
+&lt;li&gt;any obvious things to deal with (e.g. how missing values are coded, date/time information, codes that need expanding, variable/column names that will need changing)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;after-we-read-the-datafile-s-into-r&#34;&gt;After we read the datafile(s) into R:&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;number of variables/columns&lt;/li&gt;
+&lt;li&gt;number of rows&lt;/li&gt;
+&lt;li&gt;variable types&lt;/li&gt;
+&lt;li&gt;appropriate reprentation of missing values&lt;/li&gt;
+&lt;li&gt;tidy the data (at some point)&lt;/li&gt;
+&lt;li&gt;check for innapropriate duplicates&lt;/li&gt;
+&lt;li&gt;fix dates&lt;/li&gt;
+&lt;li&gt;replace any codes with informative words&lt;/li&gt;
+&lt;li&gt;check for appropriate variable entries, e.g. levels of characters, ranges of numerics&lt;/li&gt;
+&lt;li&gt;numbers of &amp;ldquo;things&amp;rdquo;, number of experimental units, treatments, treatment combinations, temporal samples&lt;/li&gt;
+&lt;li&gt;calculate response and/or explanatory variable(s) (if required)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;after-data-tidying-and-cleaning&#34;&gt;After data tidying and cleaning&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Shapes of variables (i.e. inspect the histograms of explanatory and response variables).&lt;/li&gt;
+&lt;li&gt;Relationships among explanatory variables.&lt;/li&gt;
+&lt;li&gt;Relationships relevant to hypotheses/predictions.&lt;/li&gt;
+&lt;li&gt;Assess confidence in revealed patterns.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Maximum likelihood part 1</title>
       <link>/posts/maximum-likelihood-part-1/</link>
       <pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate>
