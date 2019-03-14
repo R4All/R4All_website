@@ -12,6 +12,23 @@
     
     
     <item>
+      <title>Some useful/amusing R help/tutorial/reference websites</title>
+      <link>/posts/some-useful-r-help-tutorial-reference-websites/</link>
+      <pubDate>Thu, 14 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/some-useful-r-help-tutorial-reference-websites/</guid>
+      <description>https://whattheyforgot.org/
+https://rverbalexpressions.netlify.com
+https://github.com/jennybc/here_here#readme
+https://speakerdeck.com/jennybc/how-to-name-files
+https://github.com/elbersb/tidylog
+https://twitter.com/KevinDKohl/status/1090294240385683465
+https://twitter.com/amy_nusbaum/status/1092294218330996736
+https://twitter.com/ericJpedersen/status/1091361839903096833
+https://github.com/ft-interactive/chart-doctor/tree/master/visual-vocabulary</description>
+    </item>
+    
+    <item>
       <title>Workflow/Checklist for data analysis</title>
       <link>/posts/workflow-checklist-for-data-analysis/</link>
       <pubDate>Thu, 14 Mar 2019 00:00:00 +0000</pubDate>
