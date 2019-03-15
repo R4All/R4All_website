@@ -21,7 +21,6 @@ linktitle = "Insights"
 {{< youtube EHLLmEcqRlk >}}
 
 
-
 ## Introduction
 
 The [preface](hyperlink to pdf of Preface?) of *Insights* informs about features of the book, such as its aims, content, structure, intended readership, and content that it does not include. Some of the text in the Preface may come across as a sales pitch (it probably is), but it also aims to make prospective readers clear about what they will find in *Insights* and why. Read the preface and answer [questions here (directs to a different website)](insightsfromdata.org), directly concerning the content of the Preface, might also help that understanding.
@@ -34,6 +33,12 @@ Here you will find the additional information mentioned in the book:
 * [Details of a live data analysis demonstration](#live-data-demo) we often use in our introductory undergraduate classes.
 * A list of [additional case studies/datasets](#more-case-studies) that you might practice with (students), or add to your class (instructors).
 * A list of [Related Books and further reading](#related-books).
+
+
+## Workflow/checklist
+
+Refer to this post: 2019-03-14-workflow-checklist-for-data-analysis
+
 
 ## R-project setup
 
@@ -110,6 +115,8 @@ Analysis of marten diets by stable isotope analysis
 
 
 ## Related reading {#related-books}
+
+Refer to this article: 2019-03-14-some-useful-r-help-tutorial-reference-websites
 
 * Grafen & Hails (2002) Modern Statistics for the Life Sciences. 368 pages. Focuses on and thoroughly covers statistics, using general linear models. Works with Minitab, SAS, SPSS.
 * Crawley (2005) Statistics - An Introduction Using R. 327 pages. A concise introduction focused on statistical analyses using R.
