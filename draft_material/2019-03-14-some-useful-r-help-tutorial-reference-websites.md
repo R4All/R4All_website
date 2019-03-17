@@ -26,6 +26,8 @@ While writing Insights1 we came across and benefitted from from looking at lots 
 
 * What promises to be a nice add-on to pipes, by Benjamin Elbers, giving brief reports in the Console about what happened at each step of the pipe: [tidylog](https://github.com/elbersb/tidylog). Not so clear this would be stable/persistent at time of writing Insights1, so we include it here rather than in the text.
 
+* [Simply Statistics](https://simplystatistics.org/). A nice website of articles about data analyses.
+
 * [A tweet and replies about p-values](https://twitter.com/KevinDKohl/status/1090294240385683465) including an excerpt from an article discussing [The American Statistical Association statement about p-values](https://amstat.tandfonline.com/doi/abs/10.1080/00031305.2016.1154108#.XI3Yo1NKjOQ): *Practices that reduce data analysis or scientific infer- ence to mechanical “bright-line” rules (such as “p < 0.05”) for justifying scientific claims or conclusions can lead to erroneous beliefs and poor decision making.*
 
 * Tweets about how beautifying graphs can be very effective procrastination [procrastination by beautification](https://twitter.com/amy_nusbaum/status/1092294218330996736), somewhat humorous, but also with an element of truth.
@@ -33,6 +35,8 @@ While writing Insights1 we came across and benefitted from from looking at lots 
 * Tweets about [the weird things we sometimes find in datasets](https://twitter.com/ericJpedersen/status/1091361839903096833).
 
 * A nice way to get into regular expressions: [RVerbalExpressions](https://rverbalexpressions.netlify.com). "The goal of RVerbalExpressions is to make it easier to construct regular expressions using grammar and functionality inspired by VerbalExpressions. Usage of %>% is encouraged to build expressions in a chain like fashion."
+
+* [7 Reasons for policy professionals to get into R programming in 2019](http://gilesd-j.com/2019/01/07/7-reasons-for-policy-professionals-to-get-pumped-about-r-programming-in-2019)
 
 * [Excel is obsolete](https://appsilon.com/excel-is-obsolete-here-are-the-top-2-alternatives-from-r-and-python/). Use R (and Python) instead.
 

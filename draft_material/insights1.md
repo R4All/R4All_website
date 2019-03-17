@@ -112,6 +112,23 @@ Analysis of marten diets by stable isotope analysis
 * Original publication: https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.4896
 * Data:    https://datadryad.org/resource/doi:10.5061/dryad.7j0c8dm
 
+### Desert bat diets
+
+* Original publication: https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.4896
+* Data:    https://datadryad.org/resource/doi:10.5061/dryad.7j0c8dm
+
+### Birds eating insects
+
+* Original publication: https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.4787
+* Data:    https://datadryad.org/resource/doi:10.5061/dryad.4f1n785
+
+### Diets of predatory fish
+
+* Original publication: https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.4857
+* Data:    https://datadryad.org/resource/doi:10.5061/dryad.0jm1dt2
+
+
+
 ### Cervical spine compression and MRI (not food related)
 
 * Original publication: https://doi.org/10.5061/dryad.kk653rs
