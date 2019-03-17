@@ -112,7 +112,18 @@ Analysis of marten diets by stable isotope analysis
 * Original publication: https://onlinelibrary.wiley.com/doi/full/10.1002/ece3.4896
 * Data:    https://datadryad.org/resource/doi:10.5061/dryad.7j0c8dm
 
+### Cervical spine compression and MRI (not food related)
 
+* Original publication: https://doi.org/10.5061/dryad.kk653rs
+* Data: https://datadryad.org/resource/doi:10.5061/dryad.kk653rs
+
+### Lots of other datasets here:
+
+https://www.nature.com/articles/s41559-017-0458-2/tables/1
+
+and here:
+
+https://cran.r-project.org/web/packages/TH.data
 
 ## Related reading {#related-books}
 
