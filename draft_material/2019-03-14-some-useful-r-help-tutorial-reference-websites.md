@@ -40,4 +40,6 @@ While writing Insights1 we came across and benefitted from from looking at lots 
 
 * [Excel is obsolete](https://appsilon.com/excel-is-obsolete-here-are-the-top-2-alternatives-from-r-and-python/). Use R (and Python) instead.
 
+* We haven't got or read this, but will let you know if we do! [Principles of Strategic Data Science](https://leanpub.com/strategic_data_science)
+
 * Warning: a hideously intrusive website... [Forbes, You Can Reduce Business Risk By Phasing Out Spreadsheets For Business.](https://www.forbes.com/sites/metabrown/2017/10/30/you-can-reduce-business-risk-by-phasing-out-spreadsheets-for-business/#6d944dc847a0)
