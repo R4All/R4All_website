@@ -19,4 +19,4 @@ linktitle = "Datasets"
 
 [All the datasets (and more) one zip file](https://github.com/R4All/datasets/archive/master.zip).
 
-We don't any longer distribute datasets for the first edition of *Getting Started with R*.
+Datasets for the first edition of *Getting Started with R* are also contained in that zip file.

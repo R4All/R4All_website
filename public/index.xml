@@ -337,7 +337,7 @@ dd &amp;lt;- read_csv(readr_example(&amp;quot;mtcars.csv&amp;quot;))
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/R4All/datasets/archive/master.zip&#34;&gt;All the datasets (and more) one zip file&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;We don&amp;rsquo;t any longer distribute datasets for the first edition of &lt;em&gt;Getting Started with R&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Datasets for the first edition of &lt;em&gt;Getting Started with R&lt;/em&gt; are also contained in that zip file.&lt;/p&gt;
 </description>
     </item>
     
