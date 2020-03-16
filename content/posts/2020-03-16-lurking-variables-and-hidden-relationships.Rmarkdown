@@ -1,0 +1,94 @@
+---
+title: Lurking variables and hidden relationships
+author: Owen
+date: '2020-03-16'
+slug: lurking-variables-and-hidden-relationships
+categories: []
+tags: []
+image:
+  caption: ''
+  focal_point: ''
+---
+
+Inspiration for the following from from Richard McElreath's Statistical Rethinking book, and some of the code comes from here: https://bookdown.org/ajkurz/Statistical_Rethinking_recoded/multivariate-linear-models.html#masked-relationship
+
+
+
+Let us think about the question of how the response variable *y* is related to two explanatory variables *x1* and *x2*.
+
+First we make a dataset in which we know the relationships because we specify them: we make *y = x1 - x2*. Before this, we create *x1* and *x2* and make them correlated...
+
+```{r}
+rm(list=ls())
+```
+
+
+```{r message = FALSE}
+library(tidyverse)
+library(patchwork)
+set.seed(141)  # setting the seed makes the results reproducible
+N   <- 100   # number of observations
+rho <- .8      # correlation between x_pos and x_neg
+dd <- 
+  tibble(x1 = rnorm(N),                            
+         x2 = rnorm(N, rho*x1, sqrt(1 - rho^2)),  
+         y     = rnorm(N, x1 - x2))               
+```
+
+A quick look at the dataset... three numeric `<dbl>` variables.
+
+```{r}
+glimpse(dd)
+```
+
+Figure 1 shows the three scatterplots on can make. Importantly, we see little evidence of the relationship between *y* and *x1*, or between *y* and *x2* that we know exist. We can clearly see the correlation between the two explanatory variables *x1* and *x2*.
+
+```{r masked-rels-1, fig.cap='(a and b) Little evidence of a relationship between the response variable *y* and either of the two explanatory variables *x1*, or *x2*. (c) Strong correlation between the two explanatory variables *x1* and *x2*', out.width='50%', fig.asp=.75, fig.align='center', echo=FALSE, warning=FALSE}
+p1 <- ggplot(dd, aes(x=x1, y=y)) +
+  geom_point()
+p2 <- ggplot(dd, aes(x=x2, y=y)) +
+  geom_point()
+p3 <- ggplot(dd, aes(x=x1, y=x2)) +
+  geom_point()
+p1 + p2 + p3
+```
+
+To reveal the relationship between *y* and *x1* we need to *control* for the variation in *x2*. One way to do this is to divide the data into subsets in each of which there is relatively little variation in *x2*. With the following code we add a variable to the data set that contains categories of variation in *x2*. I.e. we *cut* the variation in *x2* into 10 groups, and put the names of these groups in a new variable:
+
+```{r}
+dd <- mutate(dd,
+            x2_cut = cut(x2, 10))
+```
+
+Figure 2, in particular the panels with more observations, clearly shows the positive relationships that we know exist. Great! Have a go at making an analogous plot while controlling for variation in *x1*. (By the way, we have more data in the middle, because *x2* is normally distriuted.)
+
+```{r masked-rels-2, fig.cap='The positive relationship between the response variable (*y*) and one of the explanatory variables (*x1*) is visible because each facet shows a relatively small range of variation in the other explanatory variable (*x2*).', out.width='50%', fig.asp=.75, fig.align='center', echo=FALSE, warning=FALSE}
+ggplot(dd, aes(x=x1, y=y)) +
+  geom_point() +
+  facet_wrap(~x2_cut, scales = "free", nrow = 2)
+
+```
+
+Another way to *control* for variation in each explanatory variable while "viewing" the relationship of the response variable with the other is *multiple regression*. Below we see very strong evidence of the positive relationship between *y* and *x1* and negative between *y* and *x2*, and that estimated coefficients (slopes) are not different from the real ones (1). Whereas the univariate regression show much weaker evidence of any relationships, and estimated coefficients are poorly estimated.
+
+Multiple regression is, in effect, doing what we did when we cut up the data and plotted parts of it that contained little variation in the other variable.
+
+```{r}
+mod_x1x2 <- lm(y ~ x1 + x2, data = dd)
+summary(mod_x1x2)
+```
+
+
+```{r}
+mod_x1 <- lm(y ~ x1, data = dd)
+summary(mod_x1)
+```
+
+
+
+```{r}
+mod_x2 <- lm(y ~ x2, data = dd)
+summary(mod_x2)
+```
+
+

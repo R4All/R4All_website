@@ -11,6 +11,8 @@ title = "R4All"
 # End your URL with a `/` trailing slash, e.g. `https://example.com/`.
 baseurl = "https://r4all.org/"
 
+math = true
+
 # Enter a copyright notice to display in the site footer.
 # To display a copyright symbol, type `&copy;`.
 copyright = ""
@@ -53,6 +55,7 @@ preserveTaxonomyNames = true
 	angledQuotes = false
 	latexDashes = true
   extensions = ["backslashLineBreak"]
+  math = true
 
 # Taxonomies.
 [taxonomies]
