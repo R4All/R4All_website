@@ -29,7 +29,8 @@
     
   
   <meta name="description" content="[This is a minimal post due to very limited time.]
-We need to check the assumptions of our linear model (e.g. regression, ANOVA, ANCOVA) are not too badly violated. We often use four diagnostic graphs to do so. One of these shows standardised residuals plotted against leverage (each observation has a value). Here is an example that looks at relationship between earthworm mass (response variable) and two explanatory variables (species ID of the earthworm, and stomach circumference of the earthworm).">
+We need to check the assumptions of our linear model (e.g. regression, ANOVA, ANCOVA) are not too badly violated. We often use four diagnostic graphs to do so. One of these shows standardised residuals plotted against leverage (each observation has a value).
+The take home message of this post is if your model contains at least one continuous explanatory variable, use the base R methods for making your diagnostic plots:">
 
   
   <link rel="alternate" hreflang="en-us" href="/posts/diagnostic-plots-of-models-with-categotical-explanatory-variables/">
@@ -124,7 +125,8 @@ We need to check the assumptions of our linear model (e.g. regression, ANOVA, AN
   <meta property="og:url" content="/posts/diagnostic-plots-of-models-with-categotical-explanatory-variables/">
   <meta property="og:title" content="Diagnostic plots of linear models with categotical explanatory variables | R4All">
   <meta property="og:description" content="[This is a minimal post due to very limited time.]
-We need to check the assumptions of our linear model (e.g. regression, ANOVA, ANCOVA) are not too badly violated. We often use four diagnostic graphs to do so. One of these shows standardised residuals plotted against leverage (each observation has a value). Here is an example that looks at relationship between earthworm mass (response variable) and two explanatory variables (species ID of the earthworm, and stomach circumference of the earthworm)."><meta property="og:image" content="/img/icon-192.png">
+We need to check the assumptions of our linear model (e.g. regression, ANOVA, ANCOVA) are not too badly violated. We often use four diagnostic graphs to do so. One of these shows standardised residuals plotted against leverage (each observation has a value).
+The take home message of this post is if your model contains at least one continuous explanatory variable, use the base R methods for making your diagnostic plots:"><meta property="og:image" content="/img/icon-192.png">
   <meta property="og:locale" content="en-us">
   
   <meta property="article:published_time" content="2020-03-19T00:00:00&#43;00:00">
@@ -498,7 +500,15 @@ We need to check the assumptions of our linear model (e.g. regression, ANOVA, AN
     <div class="article-style" itemprop="articleBody">
       <p>[This is a minimal post due to very limited time.]</p>
 
-<p>We need to check the assumptions of our linear model (e.g. regression, ANOVA, ANCOVA) are not too badly violated. We often use four diagnostic graphs to do so. One of these shows standardised residuals plotted against leverage (each observation has a value). Here is an example that looks at relationship between earthworm mass (response variable) and two explanatory variables (species ID of the earthworm, and stomach circumference of the earthworm).</p>
+<p>We need to check the assumptions of our linear model (e.g. regression, ANOVA, ANCOVA) are not too badly violated. We often use four diagnostic graphs to do so. One of these shows standardised residuals plotted against leverage (each observation has a value).</p>
+
+<p><strong>The take home message of this post is</strong> if your model contains at least one continuous explanatory variable, use the base R methods for making your diagnostic plots:</p>
+
+<pre><code class="language-r">par(mfrow = c(2,2))
+plot(my_model)
+</code></pre>
+
+<p>Here is an example that looks at relationship between earthworm mass (response variable) and two explanatory variables (species ID of the earthworm, and stomach circumference of the earthworm).</p>
 
 <p>Prepare R:</p>
 
@@ -531,7 +541,7 @@ library(ggfortify)
   geom_point(mapping = aes(x = Stomach_circum, y = Mass, col = Species))
 </code></pre>
 
-<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 
 <p>From this, we expect to see evidence of non-linearity in the diagnostic plot of residuals against fitted values (but this does not concern the issue addressed in this post).</p>
 
@@ -546,7 +556,7 @@ library(ggfortify)
 plot(mod_sp_circ_noint)
 </code></pre>
 
-<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 
 <p>Take note of the plot of standardised residuals versus leverage.</p>
 
@@ -555,7 +565,7 @@ plot(mod_sp_circ_noint)
 <pre><code class="language-r">autoplot(mod_sp_circ_noint)
 </code></pre>
 
-<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 
 <p>It seems that the <code>autoplot</code> function in the <strong>ggfortify</strong> package is not doing what we would like and expect&hellip; there is a continuous explanatory variable, so leverage is not constant, and it should make a graph with leverage on the x-axis.</p>
 
@@ -568,12 +578,12 @@ plot(mod_sp_circ_noint)
 plot(mod_circ)
 </code></pre>
 
-<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 
 <pre><code class="language-r">autoplot(mod_circ)
 </code></pre>
 
-<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 
 <p>And when there is only a factor variable:</p>
 
@@ -584,12 +594,12 @@ plot(mod_circ)
 plot(mod_spp)
 </code></pre>
 
-<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 
 <pre><code class="language-r">autoplot(mod_spp)
 </code></pre>
 
-<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="/posts/2020-03-19-diagnostic-plots-of-models-with-categotical-explanatory-variables_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 
 <p>I believe it is useful to have the residuals versus leverage plot if there is continuous explanatory variable, so would then use the base R method to make the diagnostic plots.</p>
 
