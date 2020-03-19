@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Diagnostic plots of linear models with categotical explanatory variables</title>
+      <link>/posts/diagnostic-plots-of-models-with-categotical-explanatory-variables/</link>
+      <pubDate>Thu, 19 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/diagnostic-plots-of-models-with-categotical-explanatory-variables/</guid>
+      <description>[This is a minimal post due to very limited time.]
+We need to check the assumptions of our linear model (e.g. regression, ANOVA, ANCOVA) are not too badly violated. We often use four diagnostic graphs to do so. One of these shows standardised residuals plotted against leverage (each observation has a value). Here is an example that looks at relationship between earthworm mass (response variable) and two explanatory variables (species ID of the earthworm, and stomach circumference of the earthworm).</description>
+    </item>
+    
+    <item>
       <title>Lurking variables and hidden relationships</title>
       <link>/posts/lurking-variables-and-hidden-relationships/</link>
       <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
