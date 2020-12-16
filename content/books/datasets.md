@@ -20,3 +20,7 @@ linktitle = "Datasets"
 [All the datasets (and more) one zip file](https://github.com/R4All/datasets/archive/master.zip).
 
 Datasets for the first edition of *Getting Started with R* are also contained in that zip file.
+
+## Datasets used in *Insights*
+
+The datasets used in *Insights* are all available directly from publically accessible data repositories. Please see the book or [companion website](http://insightsfromdata.io/) for details.

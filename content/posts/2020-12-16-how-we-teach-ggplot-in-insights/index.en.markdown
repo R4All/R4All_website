@@ -1,0 +1,39 @@
+---
+title: How we teach ggplot (in the Insights book)
+author: Owen Petchey
+date: '2020-12-16'
+slug: []
+categories: []
+tags: []
+image:
+  caption: ''
+  focal_point: ''
+---
+
+In our book [*Insights*]({{< ref "/books/Insights.md" >}}) we help readers learn how to use the amazing **ggplot2** package to make visualisations. If you have some experience with **ggplot2**, you may think our method of teaching it, and of using it in the book are a bit odd. Here we explain our reason for teaching it the way we teach it.
+
+For example, here is the code for the first graph we make:
+
+
+```r
+bats_Age_Sex %>%
+  ggplot() +
+    geom_col(mapping = aes(x=Sex, y=num_bat_IDs, fill=Age))
+```
+
+And if we had not piped the dataset into *ggplot* then we would have done this:
+
+
+```r
+ggplot() +
+  geom_col(data = bats_Age_Sex,
+           mapping = aes(x=Sex, y=num_bat_IDs, fill=Age))
+```
+
+Generally speaking, we first teach students to put all the arguments into the *geom*. We believe this is a valuable didactic tool/approach (and also not bad to do in any case). This is because we believe that it's important to know how the *geoms* work and what they need, and that this is best seen by specifying the necessary information in the *geom*.
+
+After we've explained and practiced this approach numerous times with different *geoms*, we explain how inheritance from the *ggplot* function works, and when it is useful.
+
+
+
+
