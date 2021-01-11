@@ -23,6 +23,10 @@ We are pleased to announce our brand new book, *Insights from Data with R, An In
 
 It is published by OUP and available from the [OUP website](https://global.oup.com/academic/product/insights-from-data-with-r-9780198849827).
 
+**Table of contents**: Here is the {{% staticref "files/Insights_ToC.pdf" "newtab" %}}Table of Contents (a pdf){{% /staticref %}}.
+
+**Preface**: Here is the {{% staticref "files/Insights_Preface.pdf" "newtab" %}}Preface section (a  pdf){{% /staticref %}}.
+
 *Insights* is designed and written for undergraduates in the life and environmental sciences. It assumes no knowledge of statistics, data or programming.
 
 *Insights* is intended as a go-to resource to accompany undergraduates during their first experience of working with data to get answers.
