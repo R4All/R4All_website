@@ -12,7 +12,23 @@
     
     <url>
     
-      <loc>/posts/diagnostic-plots-of-models-with-categotical-explanatory-variables/</loc>
+      <loc>https://r4all.org/posts/2020-12-16-how-we-teach-ggplot-in-insights/</loc>
+      <lastmod>2020-12-16T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>https://r4all.org/books/insights/</loc>
+      <lastmod>2020-12-16T00:00:00+01:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>https://r4all.org/posts/diagnostic-plots-of-models-with-categotical-explanatory-variables/</loc>
       <lastmod>2020-03-19T00:00:00+00:00</lastmod>
     </url>
     
@@ -20,7 +36,7 @@
     
     <url>
     
-      <loc>/posts/lurking-variables-and-hidden-relationships/</loc>
+      <loc>https://r4all.org/posts/lurking-variables-and-hidden-relationships/</loc>
       <lastmod>2020-03-16T00:00:00+00:00</lastmod>
     </url>
     
@@ -28,7 +44,7 @@
     
     <url>
     
-      <loc>/posts/maximum-likelihood-part-1/</loc>
+      <loc>https://r4all.org/posts/maximum-likelihood-part-1/</loc>
       <lastmod>2019-02-27T00:00:00+00:00</lastmod>
     </url>
     
@@ -36,7 +52,7 @@
     
     <url>
     
-      <loc>/posts/why-adjust-your-r-squared/</loc>
+      <loc>https://r4all.org/posts/why-adjust-your-r-squared/</loc>
       <lastmod>2019-02-27T00:00:00+00:00</lastmod>
     </url>
     
@@ -44,7 +60,7 @@
     
     <url>
     
-      <loc>/posts/getting-lost-packages/</loc>
+      <loc>https://r4all.org/posts/getting-lost-packages/</loc>
       <lastmod>2019-02-05T00:00:00+00:00</lastmod>
     </url>
     
@@ -52,7 +68,7 @@
     
     <url>
     
-      <loc>/posts/importing-data-update/</loc>
+      <loc>https://r4all.org/posts/importing-data-update/</loc>
       <lastmod>2019-02-05T00:00:00+00:00</lastmod>
     </url>
     
@@ -60,7 +76,7 @@
     
     <url>
     
-      <loc>/courses/</loc>
+      <loc>https://r4all.org/courses/</loc>
       <lastmod>2018-09-09T00:00:00+02:00</lastmod>
     </url>
     
@@ -68,7 +84,7 @@
     
     <url>
     
-      <loc>/books/datasets/</loc>
+      <loc>https://r4all.org/books/datasets/</loc>
       <lastmod>2018-09-09T00:00:00+02:00</lastmod>
     </url>
     
@@ -76,7 +92,7 @@
     
     <url>
     
-      <loc>/books/gswr2/</loc>
+      <loc>https://r4all.org/books/gswr2/</loc>
       <lastmod>2018-09-09T00:00:00+02:00</lastmod>
     </url>
     
@@ -84,7 +100,7 @@
     
     <url>
     
-      <loc>/books/miscellany/</loc>
+      <loc>https://r4all.org/books/miscellany/</loc>
       <lastmod>2018-09-09T00:00:00+02:00</lastmod>
     </url>
     
@@ -92,7 +108,7 @@
     
     <url>
     
-      <loc>/books/</loc>
+      <loc>https://r4all.org/books/</loc>
       <lastmod>2018-09-09T00:00:00+02:00</lastmod>
     </url>
     
@@ -100,7 +116,7 @@
     
     <url>
     
-      <loc>/philosophy/</loc>
+      <loc>https://r4all.org/philosophy/</loc>
       <lastmod>2018-09-09T00:00:00+02:00</lastmod>
     </url>
     
@@ -108,7 +124,7 @@
     
     <url>
     
-      <loc>/testimonials/</loc>
+      <loc>https://r4all.org/testimonials/</loc>
       <lastmod>2018-09-09T00:00:00+02:00</lastmod>
     </url>
     
@@ -116,7 +132,7 @@
     
     <url>
     
-      <loc>/posts/</loc>
+      <loc>https://r4all.org/posts/</loc>
       <lastmod>2017-01-01T00:00:00+01:00</lastmod>
     </url>
     
@@ -124,7 +140,7 @@
     
     <url>
     
-      <loc>/publication/</loc>
+      <loc>https://r4all.org/publication/</loc>
       <lastmod>2017-01-01T00:00:00+01:00</lastmod>
     </url>
     
@@ -132,7 +148,7 @@
     
     <url>
     
-      <loc>/talk/</loc>
+      <loc>https://r4all.org/talk/</loc>
       <lastmod>2017-01-01T00:00:00+01:00</lastmod>
     </url>
     
@@ -140,7 +156,7 @@
     
     <url>
     
-      <loc>/who-are-we/</loc>
+      <loc>https://r4all.org/who-are-we/</loc>
       <lastmod>2017-01-01T00:00:00+01:00</lastmod>
     </url>
     
@@ -148,35 +164,35 @@
     
     <url>
     
-      <loc>/author/admin/</loc>
+      <loc>https://r4all.org/author/admin/</loc>
     </url>
     
   
     
     <url>
     
-      <loc>/author/andrew/</loc>
+      <loc>https://r4all.org/author/andrew/</loc>
     </url>
     
   
     
     <url>
     
-      <loc>/author/dylan/</loc>
+      <loc>https://r4all.org/author/dylan/</loc>
     </url>
     
   
     
     <url>
     
-      <loc>/author/natalie/</loc>
+      <loc>https://r4all.org/author/natalie/</loc>
     </url>
     
   
     
     <url>
     
-      <loc>/author/</loc>
+      <loc>https://r4all.org/author/</loc>
       <priority>0</priority>
     </url>
     
@@ -184,7 +200,7 @@
     
     <url>
     
-      <loc>/authors/</loc>
+      <loc>https://r4all.org/authors/</loc>
       <priority>0</priority>
     </url>
     
@@ -192,7 +208,7 @@
     
     <url>
     
-      <loc>/categories/</loc>
+      <loc>https://r4all.org/categories/</loc>
       <priority>0</priority>
     </url>
     
@@ -200,7 +216,7 @@
     
     <url>
     
-      <loc>/publication_types/</loc>
+      <loc>https://r4all.org/publication_types/</loc>
       <priority>0</priority>
     </url>
     
@@ -208,7 +224,7 @@
     
     <url>
     
-      <loc>/</loc>
+      <loc>https://r4all.org/</loc>
       <lastmod>2017-10-15T00:00:00+02:00</lastmod>
       <priority>0</priority>
     </url>
@@ -217,7 +233,7 @@
     
     <url>
     
-      <loc>/tags/</loc>
+      <loc>https://r4all.org/tags/</loc>
       <priority>0</priority>
     </url>
     
