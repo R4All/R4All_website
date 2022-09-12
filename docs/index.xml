@@ -46,6 +46,74 @@
     </item>
     
     <item>
+      <title>levels() not working in 2nd Edition of Getting Started</title>
+      <link>https://r4all.org/posts/2022-09-10-levels-not-working-in-2nd-edition-of-getting-started/</link>
+      <pubDate>Sat, 10 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://r4all.org/posts/2022-09-10-levels-not-working-in-2nd-edition-of-getting-started/</guid>
+      <description>
+&lt;script src=&#34;https://r4all.org/posts/2022-09-10-levels-not-working-in-2nd-edition-of-getting-started/index.en_files/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;Sometimes, in the second edition, we use the &lt;code&gt;levels&lt;/code&gt; function to get the unique levels of a variable. For example on page 133 we do &lt;code&gt;levels(growth.moo$diet)&lt;/code&gt; to get the unique levels of the &lt;code&gt;diet&lt;/code&gt; variable. Today, this does not work. Below I explain why and how to fix it. Short version is use &lt;code&gt;unique&lt;/code&gt; instead of &lt;code&gt;levels&lt;/code&gt; or convert the variables to factors.&lt;/p&gt;
+&lt;div id=&#34;prepare&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Prepare&lt;/h2&gt;
+&lt;p&gt;We will use the &lt;code&gt;mutate&lt;/code&gt; function from the &lt;code&gt;dplyr&lt;/code&gt; package, so please ensure you have that package installed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;import-the-data&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Import the data&lt;/h2&gt;
+&lt;p&gt;In the next line of code I import the data from github, rather than a local copy. This saves us having to deal with local location of the data file. I would normally work with a local copy, however.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;growth.moo &amp;lt;- read.csv(url(&amp;quot;https://raw.githubusercontent.com/r4all/datasets/master/growth.csv&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-unique-rather-than-levels&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Using &lt;code&gt;unique&lt;/code&gt; rather than &lt;code&gt;levels&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Looking at the structure of the data in R we see:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;str(growth.moo)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;#39;data.frame&amp;#39;:    48 obs. of  3 variables:
+##  $ supplement: chr  &amp;quot;supergain&amp;quot; &amp;quot;supergain&amp;quot; &amp;quot;supergain&amp;quot; &amp;quot;supergain&amp;quot; ...
+##  $ diet      : chr  &amp;quot;wheat&amp;quot; &amp;quot;wheat&amp;quot; &amp;quot;wheat&amp;quot; &amp;quot;wheat&amp;quot; ...
+##  $ gain      : num  17.4 16.8 18.1 15.8 17.7 ...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Supplement and diet are both &lt;code&gt;chr&lt;/code&gt; (character) type variables.&lt;/p&gt;
+&lt;p&gt;Hence the &lt;code&gt;levels&lt;/code&gt; function doesn’t give us the levels. Instead, we get &lt;code&gt;NULL&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;levels(growth.moo$supplement)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;levels(growth.moo$diet)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## NULL&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So, instead use &lt;code&gt;unique&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;unique(growth.moo$supplement)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;supergain&amp;quot; &amp;quot;control&amp;quot;   &amp;quot;supersupp&amp;quot; &amp;quot;agrimore&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;unique(growth.moo$diet)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;wheat&amp;quot;  &amp;quot;oats&amp;quot;   &amp;quot;barley&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Awesomeness!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;converting-to-a-factor&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Converting to a factor&lt;/h2&gt;
+&lt;p&gt;Another option is to convert the &lt;code&gt;chr&lt;/code&gt; type variables to be factor type variables. There are many ways to achieve this, here are two.&lt;/p&gt;
+&lt;p&gt;If we want to convert to factors all the &lt;code&gt;chr&lt;/code&gt; variables in our data, then we can use the &lt;code&gt;type.convert&lt;/code&gt; function with the argument &lt;code&gt;as.is = FALSE&lt;/code&gt;. Making this &lt;code&gt;FALSE&lt;/code&gt; tells the &lt;code&gt;type.convert&lt;/code&gt; function to &lt;em&gt;not&lt;/em&gt; keep character type variables &lt;em&gt;as they are&lt;/em&gt;, but rather to convert them to factors.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;growth.moo.factors1 &amp;lt;- type.convert(growth.moo, as.is = FALSE)
+str(growth.moo.factors1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;#39;data.frame&amp;#39;:    48 obs. of  3 variables:
+##  $ supplement: Factor w/ 4 levels &amp;quot;agrimore&amp;quot;,&amp;quot;control&amp;quot;,..: 3 3 3 3 2 2 2 2 4 4 ...
+##  $ diet      : Factor w/ 3 levels &amp;quot;barley&amp;quot;,&amp;quot;oats&amp;quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ gain      : num  17.4 16.8 18.1 15.8 17.7 ...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Great! What were character type variables are now factors.&lt;/p&gt;
+&lt;p&gt;By the way, the default since R 4.0.0 is &lt;code&gt;as.is = TRUE&lt;/code&gt; which can be understood as keep variables as they are–do not convert them to factors. We wrote the second edition before 4.0.0, and this is why &lt;code&gt;levels&lt;/code&gt; worked when we wrote the second edition, but does not work now.&lt;/p&gt;
+&lt;p&gt;Another way is to individually convert each variable, for example:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;growth.moo.factors2  &amp;lt;- dplyr::mutate(growth.moo,
+                                      supplement = as.factor(supplement),
+                                      diet = as.factor(diet))
+str(growth.moo.factors2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;#39;data.frame&amp;#39;:    48 obs. of  3 variables:
+##  $ supplement: Factor w/ 4 levels &amp;quot;agrimore&amp;quot;,&amp;quot;control&amp;quot;,..: 3 3 3 3 2 2 2 2 4 4 ...
+##  $ diet      : Factor w/ 3 levels &amp;quot;barley&amp;quot;,&amp;quot;oats&amp;quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ gain      : num  17.4 16.8 18.1 15.8 17.7 ...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Awesomeness 2!&lt;/p&gt;
+&lt;p&gt;Thanks for reading. Have a nice day!&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>How we teach ggplot (in the Insights book)</title>
       <link>https://r4all.org/posts/2020-12-16-how-we-teach-ggplot-in-insights/</link>
       <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
@@ -718,53 +786,6 @@ Paperback at &lt;a href=&#34;https://global.oup.com/academic/product/getting-sta
 &lt;h2 id=&#34;anything-else-new&#34;&gt;Anything else new?&lt;/h2&gt;
 
 &lt;p&gt;We have a new co-author, Dylan Childs. He better at using R than Owen and Andrew, and kind of grumpy, so fits in well.  He&amp;rsquo;s also helped us expand our stats offerings in the book.  Not only do we provide more examples for basic stats (Regression, 1-way ANOVA, 2-way ANOVA) but a whole new chapter on the Generalised Linear Model.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Miscellany</title>
-      <link>https://r4all.org/books/miscellany/</link>
-      <pubDate>Sun, 09 Sep 2018 00:00:00 +0200</pubDate>
-      
-      <guid>https://r4all.org/books/miscellany/</guid>
-      <description>
-
-&lt;h2 id=&#34;lost-packages&#34;&gt;Lost packages&lt;/h2&gt;
-
-&lt;p&gt;Here is a post &lt;a href=&#34;https://r4all.org/posts/getting-lost-packages/&#34;&gt;Lost Packages&lt;/a&gt; about what to do if, when attempting to install a package you get a message like &lt;code&gt;package ggfortify is not available (for R Version 3.2.4)&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;importing-data-update&#34;&gt;Importing data update&lt;/h2&gt;
-
-&lt;p&gt;If you&amp;rsquo;re having a brain melt figuring out the difference between &lt;code&gt;read_csv&lt;/code&gt; and &lt;code&gt;read.csv&lt;/code&gt; and their use in the RStudio Import Dataset tool, look at this post about &lt;a href=&#34;https://r4all.org/posts/importing-data-update/&#34;&gt;using the &lt;strong&gt;readr&lt;/strong&gt; package and &lt;code&gt;read_csv&lt;/code&gt; function to import data.&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;about-the-first-edition-of-getting-started-with-r&#34;&gt;About the first edition of &lt;em&gt;Getting Started with R&lt;/em&gt;&lt;/h2&gt;
-
-
-
-
-  
-
-&lt;figure&gt;
-
-&lt;img src=&#34;https://r4all.org/img/FirstEdCover.jpg&#34; /&gt;
-
-
-&lt;/figure&gt;
-
-&lt;p&gt;“Blowing away any feeling of intimidation is what this book is about.” – &lt;a href=&#34;https://www.sciencedirect.com/science/article/pii/S0169534712001590&#34;&gt;Graeme Ruxton, Trends in Ecology Evolution&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Designed for undergraduates, grad students and staff, we show you how to import, explore, graph, and start analysing your data, keeping you focused on your ultimate goals.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;A simple, easy, and engaging introduction to R for biologists.&lt;/li&gt;
-&lt;li&gt;Walks readers through the fundamentals of using R, from that first step of importing datathrough to managing and exploring it and ultimately producing figures and analyses&lt;/li&gt;
-&lt;li&gt;Delivers an efficient, accurate, reliable, and reproducible workflow.&lt;/li&gt;
-&lt;li&gt;We provide a simple, efficient, reliable, accurate, and reproducible workflow for you in an engaging and sometimes humorous format.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Getting Started with R – its the book you and your students want to read before all the others.&lt;/p&gt;
-
-&lt;p&gt;Well, it was. Now you should only look at &lt;a href=&#34;https://r4all.org/books/gswr2/&#34;&gt;the Second Edition&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

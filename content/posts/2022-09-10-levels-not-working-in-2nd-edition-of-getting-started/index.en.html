@@ -1,0 +1,67 @@
+---
+title: levels() not working in 2nd Edition of Getting Started
+author: Owen Petchey
+date: '2022-09-10'
+image:
+  caption: ''
+  focal_point: ''
+---
+
+<script src="{{< blogdown/postref >}}index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p>Sometimes, in the second edition, we use the <code>levels</code> function to get the unique levels of a variable. For example on page 133 we do <code>levels(growth.moo$diet)</code> to get the unique levels of the <code>diet</code> variable. Today, this does not work. Below I explain why and how to fix it. Short version is use <code>unique</code> instead of <code>levels</code> or convert the variables to factors.</p>
+<div id="prepare" class="section level2">
+<h2>Prepare</h2>
+<p>We will use the <code>mutate</code> function from the <code>dplyr</code> package, so please ensure you have that package installed.</p>
+</div>
+<div id="import-the-data" class="section level2">
+<h2>Import the data</h2>
+<p>In the next line of code I import the data from github, rather than a local copy. This saves us having to deal with local location of the data file. I would normally work with a local copy, however.</p>
+<pre class="r"><code>growth.moo &lt;- read.csv(url(&quot;https://raw.githubusercontent.com/r4all/datasets/master/growth.csv&quot;))</code></pre>
+</div>
+<div id="using-unique-rather-than-levels" class="section level2">
+<h2>Using <code>unique</code> rather than <code>levels</code></h2>
+<p>Looking at the structure of the data in R we see:</p>
+<pre class="r"><code>str(growth.moo)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    48 obs. of  3 variables:
+##  $ supplement: chr  &quot;supergain&quot; &quot;supergain&quot; &quot;supergain&quot; &quot;supergain&quot; ...
+##  $ diet      : chr  &quot;wheat&quot; &quot;wheat&quot; &quot;wheat&quot; &quot;wheat&quot; ...
+##  $ gain      : num  17.4 16.8 18.1 15.8 17.7 ...</code></pre>
+<p>Supplement and diet are both <code>chr</code> (character) type variables.</p>
+<p>Hence the <code>levels</code> function doesn’t give us the levels. Instead, we get <code>NULL</code>:</p>
+<pre class="r"><code>levels(growth.moo$supplement)</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>levels(growth.moo$diet)</code></pre>
+<pre><code>## NULL</code></pre>
+<p>So, instead use <code>unique</code>:</p>
+<pre class="r"><code>unique(growth.moo$supplement)</code></pre>
+<pre><code>## [1] &quot;supergain&quot; &quot;control&quot;   &quot;supersupp&quot; &quot;agrimore&quot;</code></pre>
+<pre class="r"><code>unique(growth.moo$diet)</code></pre>
+<pre><code>## [1] &quot;wheat&quot;  &quot;oats&quot;   &quot;barley&quot;</code></pre>
+<p>Awesomeness!</p>
+</div>
+<div id="converting-to-a-factor" class="section level2">
+<h2>Converting to a factor</h2>
+<p>Another option is to convert the <code>chr</code> type variables to be factor type variables. There are many ways to achieve this, here are two.</p>
+<p>If we want to convert to factors all the <code>chr</code> variables in our data, then we can use the <code>type.convert</code> function with the argument <code>as.is = FALSE</code>. Making this <code>FALSE</code> tells the <code>type.convert</code> function to <em>not</em> keep character type variables <em>as they are</em>, but rather to convert them to factors.</p>
+<pre class="r"><code>growth.moo.factors1 &lt;- type.convert(growth.moo, as.is = FALSE)
+str(growth.moo.factors1)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    48 obs. of  3 variables:
+##  $ supplement: Factor w/ 4 levels &quot;agrimore&quot;,&quot;control&quot;,..: 3 3 3 3 2 2 2 2 4 4 ...
+##  $ diet      : Factor w/ 3 levels &quot;barley&quot;,&quot;oats&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ gain      : num  17.4 16.8 18.1 15.8 17.7 ...</code></pre>
+<p>Great! What were character type variables are now factors.</p>
+<p>By the way, the default since R 4.0.0 is <code>as.is = TRUE</code> which can be understood as keep variables as they are–do not convert them to factors. We wrote the second edition before 4.0.0, and this is why <code>levels</code> worked when we wrote the second edition, but does not work now.</p>
+<p>Another way is to individually convert each variable, for example:</p>
+<pre class="r"><code>growth.moo.factors2  &lt;- dplyr::mutate(growth.moo,
+                                      supplement = as.factor(supplement),
+                                      diet = as.factor(diet))
+str(growth.moo.factors2)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    48 obs. of  3 variables:
+##  $ supplement: Factor w/ 4 levels &quot;agrimore&quot;,&quot;control&quot;,..: 3 3 3 3 2 2 2 2 4 4 ...
+##  $ diet      : Factor w/ 3 levels &quot;barley&quot;,&quot;oats&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ gain      : num  17.4 16.8 18.1 15.8 17.7 ...</code></pre>
+<p>Awesomeness 2!</p>
+<p>Thanks for reading. Have a nice day!</p>
+</div>

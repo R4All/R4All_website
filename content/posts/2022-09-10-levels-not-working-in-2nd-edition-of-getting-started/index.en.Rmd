@@ -1,0 +1,77 @@
+---
+title: levels() not working in 2nd Edition of Getting Started
+author: Owen Petchey
+date: '2022-09-10'
+image:
+  caption: ''
+  focal_point: ''
+---
+
+Sometimes, in the second edition, we use the `levels` function to get the unique levels of a variable. For example on page 133 we do `levels(growth.moo$diet)` to get the unique levels of the `diet` variable. Today, this does not work. Below I explain why and how to fix it. Short version is use `unique` instead of `levels` or convert the variables to factors.
+
+## Prepare
+
+We will use the `mutate` function from the `dplyr` package, so please ensure you have that package installed.
+
+## Import the data
+
+In the next line of code I import the data from github, rather than a local copy. This saves us having to deal with local location of the data file. I would normally work with a local copy, however.
+
+```{r}
+growth.moo <- read.csv(url("https://raw.githubusercontent.com/r4all/datasets/master/growth.csv"))
+```
+
+## Using `unique` rather than `levels`
+
+Looking at the structure of the data in R we see:
+
+```{r}
+str(growth.moo)
+
+```
+
+Supplement and diet are both `chr` (character) type variables.
+
+Hence the `levels` function doesn't give us the levels. Instead, we get `NULL`:
+
+```{r}
+levels(growth.moo$supplement)
+levels(growth.moo$diet)
+```
+
+So, instead use `unique`:
+
+```{r}
+unique(growth.moo$supplement)
+unique(growth.moo$diet)
+```
+
+Awesomeness!
+
+## Converting to a factor
+
+Another option is to convert the `chr` type variables to be factor type variables. There are many ways to achieve this, here are two.
+
+If we want to convert to factors all the `chr` variables in our data, then we can use the `type.convert` function with the argument `as.is = FALSE`. Making this `FALSE` tells the `type.convert` function to *not* keep character type variables *as they are*, but rather to convert them to factors. 
+
+```{r}
+growth.moo.factors1 <- type.convert(growth.moo, as.is = FALSE)
+str(growth.moo.factors1)
+```
+
+Great! What were character type variables are now factors.
+
+By the way, the default since R 4.0.0 is `as.is = TRUE` which can be understood as keep variables as they are--do not convert them to factors. We wrote the second edition before 4.0.0, and this is why `levels` worked when we wrote the second edition, but does not work now.
+
+Another way is to individually convert each variable, for example:
+
+```{r}
+growth.moo.factors2  <- dplyr::mutate(growth.moo,
+                                      supplement = as.factor(supplement),
+                                      diet = as.factor(diet))
+str(growth.moo.factors2)
+```
+
+Awesomeness 2!
+
+Thanks for reading. Have a nice day!

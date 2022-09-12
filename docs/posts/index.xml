@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>levels() not working in 2nd Edition of Getting Started</title>
+      <link>https://r4all.org/posts/2022-09-10-levels-not-working-in-2nd-edition-of-getting-started/</link>
+      <pubDate>Sat, 10 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://r4all.org/posts/2022-09-10-levels-not-working-in-2nd-edition-of-getting-started/</guid>
+      <description>Sometimes, in the second edition, we use the levels function to get the unique levels of a variable. For example on page 133 we do levels(growth.moo$diet) to get the unique levels of the diet variable. Today, this does not work. Below I explain why and how to fix it. Short version is use unique instead of levels or convert the variables to factors.
+Prepare We will use the mutate function from the dplyr package, so please ensure you have that package installed.</description>
+    </item>
+    
+    <item>
       <title>How we teach ggplot (in the Insights book)</title>
       <link>https://r4all.org/posts/2020-12-16-how-we-teach-ggplot-in-insights/</link>
       <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
